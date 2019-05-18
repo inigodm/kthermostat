@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Yahoo Weather API</title>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+	<select id="cities"></select>
+
+	<script type="text/javascript">
+		var apiServer = 'https://query.yahooapis.com/v1/public/yql';
+		var cities = [ 
+			'臺北市',
+			'新北市',
+			'台中市',
+			'臺南市',
+			'高雄市',
+			'基隆市',
+			'桃園市',
+			'新竹市',
+			'新竹縣',
+			'苗栗縣',
+			'彰化縣',
+			'南投縣',
+			'雲林縣',
+			'嘉義市',
+			'嘉義縣',
+			'屏東縣',
+			'宜蘭縣',
+			'花蓮縣',
+			'台東縣',
+			'澎湖縣',
+			'金門縣',
+			'連江縣',
+			'bilbao',
+			'vitoria-gasteiz',
+			'arkaia',
+			'elorriaga'
+		];
+
+		var citiesContainer = $('#cities');
+
+		// render 'select' tag
+		for (var i in cities) {
+			var city = cities[i];
+			citiesContainer.append('<option value="' + i + '">' + city + '</option>');
+		}
+
+		// setup onchange listener
+		citiesContainer.change(function(){
+			var index = $(this).val();
+			var cityName = cities[index];
+			
+			var queryString = 'select * from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + cityName + '")';
+			$.ajax({
+				url: apiServer,
+				data: {
+					format: 'json',
+					q: queryString,
+				},
+				success: function(data) {
+					console.log(data.query.results);
+				}
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+{% load dajaxice_templatetags %}
+{% dajaxice_js_import %}
+<div class="panel-group" ng-app="newApp" ng-controller="newCtrl">
+            <div class="panel panel-default">
+                <div class="panel-heading">Thermostat Setings</div>
+                <div class="panel-body">
+                     <div class="col-sm-12">
+                     	<label for="starth">Start hour</label>
+                     	<input ng-model="min" type="number" max="24" min="0" id="starth" value=10>
+                     </div>
+                    <div class="col-sm-12">
+                     	<label for="endh">End hour</label>
+                     	<input type="number" max="24" min="<%min%>" id="endh" value=20>	
+                    </div>
+                </div>
+            </div>
+            <script src="/js/angular.min.js"></script>
+            <script>
+            var mod = angular.module('newApp', []).config(function($interpolateProvider) {
+      		    $interpolateProvider.startSymbol('<%');
+      		    $interpolateProvider.endSymbol('%>');
+              });
+            mod.controller("newCtrl",['$scope', '$timeout', '$interval', function($scope, $timeout, $interval){
+            	
+            });
+            </script>
+         </div>
+{% endblock %}

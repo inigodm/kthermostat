@@ -1,0 +1,9 @@
+com.inigo.thermostat.thread.TestScheluderManager
+com.inigo.thermostat.thread.TestLog
+com.inigo.domotik.thermostat.TempManagerTester
+com.inigo.thermostat.thread.TestTempChecker
+com.inigo.thermostat.TestLogin
+com.inigo.test.db.TestConnection
+com.inigo.TestTime
+com.inigo.ws.yahoo.TestWeatherService  
+
