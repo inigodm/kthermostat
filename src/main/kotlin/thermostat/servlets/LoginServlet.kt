@@ -1,5 +1,6 @@
 package thermostat.servlets
 
+import thermostat.dao.UserDAO
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
@@ -12,6 +13,8 @@ class LoginServlet: HttpServlet() {
 
     override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
         resp!!.writer.append("Server at: ").append(req!!.contextPath)
+        val dispatcher = servletContext.getRequestDispatcher("/login.jsp")
+        dispatcher.forward(req, resp)
     }
 }
 

@@ -4,7 +4,9 @@ import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.SQLException
 import thermostat.ThermostatException
-import thermostat.utils.SHA256
+import thermostat.utils.generateSalt
+import thermostat.utils.hash
+import thermostat.utils.isValidHash
 
 class UserDAO(val user: String = "NO_USER", var conn:Connection) : TableManager {
 
@@ -39,9 +41,8 @@ class UserDAO(val user: String = "NO_USER", var conn:Connection) : TableManager 
 
     @Throws(ThermostatException::class)
     fun updatePassword(user: String, pass: String) {
-        val sha = SHA256()
-        val salt = sha.generateSalt()
-        var hash = sha.hash(pass, salt)
+        val salt = generateSalt()
+        var hash = hash(pass, salt)
         val sql =
             "update users set pass = '" + hash + "', salt= '" + salt + "' where user = '" + user + "'"
         conn.executeUpdate(sql)
@@ -49,9 +50,8 @@ class UserDAO(val user: String = "NO_USER", var conn:Connection) : TableManager 
 
     @Throws(ThermostatException::class)
     private fun addData() {
-        val sha = SHA256()
-        val salt = sha.generateSalt()
-        var hash = sha.hash("password", salt)
+        val salt = generateSalt()
+        var hash = hash("password", salt)
         val sql =
             "insert into users (user, pass, salt) values ('inigo', '" + hash + "', '" + salt + "')"
         conn.executeUpdate(sql)
@@ -87,7 +87,7 @@ class UserDAO(val user: String = "NO_USER", var conn:Connection) : TableManager 
     }
 
     private fun isValidUser(hash: String, salt: String, pass: String): Boolean {
-        return SHA256().isValidHash(hash, salt, pass)
+        return isValidHash(hash, salt, pass)
     }
 
     @Throws(SQLException::class)

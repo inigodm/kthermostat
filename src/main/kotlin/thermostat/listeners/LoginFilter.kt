@@ -23,7 +23,7 @@ class LoginFilter: Filter {
         }
     }
 
-    private fun setDefaultUserIfInLocal(request: ServletRequest?, session : HttpSession){
+    fun setDefaultUserIfInLocal(request: ServletRequest?, session : HttpSession){
         if (localAddresses.any{ request?.remoteAddr?.contains(it) == true }){
             session.setAttribute("user", "inigo")
         }
