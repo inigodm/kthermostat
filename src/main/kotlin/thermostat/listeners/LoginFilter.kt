@@ -37,3 +37,4 @@ class LoginFilter: Filter {
         println("LoginFilter initializated")
     }
 }
+

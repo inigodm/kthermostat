@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServletResponse
 import java.io.IOException
 import javax.servlet.ServletException
 
-
-
 @WebServlet("/login")
 class LoginServlet: HttpServlet() {
 
