@@ -12,20 +12,25 @@ import javax.servlet.http.HttpSession
 
 @WebFilter("/site/*")
 class LoginFilter: Filter {
-    private val loginPage = "/Thermostat/login.jsp"
+    companion object {
+        const val LOCAL_USER = "inigo"
+        const val USER_KEY = "name"
+        const val LOGIN_URL = "/Thermostat/login.jsp"
+
+    }
     private val localAddresses = listOf("127.0.0.1", "localhost", "0:0:0:0:0:0:0:1")
 
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         val session = (request as HttpServletRequest).session
         setDefaultUserIfInLocal(request, session)
         if (request.getSession(true)?.getAttribute("name") == null){
-            (response as HttpServletResponse).sendRedirect(loginPage)
+            (response as HttpServletResponse).sendRedirect(LOGIN_URL)
         }
     }
 
     fun setDefaultUserIfInLocal(request: ServletRequest?, session : HttpSession){
         if (localAddresses.any{ request?.remoteAddr?.contains(it) == true }){
-            session.setAttribute("user", "inigo")
+            session.setAttribute(USER_KEY, LOCAL_USER)
         }
     }
 
