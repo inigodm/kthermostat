@@ -2,8 +2,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:wrapper>
-<link href="/Thermostat/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/Thermostat/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="/kthermostats/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/kthermostats/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
 <div class="panel-group" ng-app="newApp" ng-controller="newCtrl" ng-init="findSchedules()">
             <div class="panel panel-default">
@@ -97,10 +97,10 @@
                     </div>
                 </div>
            </div>
-        <script src="/Thermostat/js/jquery-2.2.0.min.js"></script>
-		<script type="text/javascript" src="/Thermostat/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/Thermostat/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-		<script type="text/javascript" src="/Thermostat/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+        <script src="/kthermostats/js/jquery-2.2.0.min.js"></script>
+		<script type="text/javascript" src="/kthermostats/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="/kthermostats/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="/kthermostats/js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
             <script>
@@ -136,7 +136,7 @@
                  
             mod.controller("newCtrl",['$scope','$http', function($scope, $http){
             	$scope.dopost = function(value){
-            		$http.post("/Thermostat/site/rest/tasks/",
+            		$http.post("/kthermostats/site/rest/tasks/",
                 			JSON.stringify({"maxHour":$("#maxHour").find("input").val(),
                 				"minHour":$("#minHour").find("input").val(),
                 				"desiredTemp":$("#mintemp").val(),
@@ -151,7 +151,7 @@
                 }
                 
                 $scope.doput = function(value){
-                		$http.put("/Thermostat/site/rest/tasks/",
+                		$http.put("/kthermostats/site/rest/tasks/",
                     			JSON.stringify({"maxHour":$("#maxHour").find("input").val(),
                     				"minHour":$("#minHour").find("input").val(),
                     				"desiredTemp":$("#mintemp").val(),
@@ -190,7 +190,7 @@
                 }
                 	
             	$scope.findSchedules = function(){
-                	$http.get("/Thermostat/site/rest/tasks/").success($scope.doReturnOk);
+                	$http.get("/kthermostats/site/rest/tasks/").success($scope.doReturnOk);
             	};
             	
             	$scope.del = function(id){
@@ -208,7 +208,7 @@
             	        callback: function (result) {
             	            console.log('This was logged in the callback!' + result + (result==true));
             	            if (result){
-            	            	$http.delete("/Thermostat/site/rest/tasks/"+id+"/").success($scope.doReturnOk);
+            	            	$http.delete("/kthermostats/site/rest/tasks/"+id+"/").success($scope.doReturnOk);
             	            }
             	        }
             	    });

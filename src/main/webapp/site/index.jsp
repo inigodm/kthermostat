@@ -2,17 +2,17 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:wrapper>
-<script src="/Thermostat/js/thermostat/facade.js"></script>
+<script src="/kthermostats/js/thermostat/facade.js"></script>
 <div class="navbar subnav" role="navigation">
     <div class="navbar-inner">
         <div class="container"> 
             <div class="btn-group-wrap">
                  <ul class="pager subnav-pager  navbar-left"> 
 		        	<li>
-			          <a href="/Thermostat/site/thermostat/schedules">Schedules</a>
+			          <a href="/kthermostats/site/thermostat/schedules">Schedules</a>
 			        </li>
 			        <li>
-			          <a href="/Thermostat/site/stats">Stats</a>
+			          <a href="/kthermostats/site/stats">Stats</a>
 			        </li>
 	        	</ul>
              </div>         

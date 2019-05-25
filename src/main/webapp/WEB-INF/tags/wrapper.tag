@@ -12,13 +12,13 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/Thermostat/img/favicon.ico">
-	<script src="/Thermostat/js/angular.min.js"></script>
+    <link rel="icon" href="/kthermostats/img/favicon.ico">
+	<script src="/kthermostats/js/angular.min.js"></script>
             
     <title>DOMOENEA</title>
     <!-- Bootstrap core CSS -->
-    <link href="/Thermostat/css/bootstrap.css" rel="stylesheet"/>
-    <link href="/Thermostat/css/main.css" rel="stylesheet">
+    <link href="/kthermostats/css/bootstrap.css" rel="stylesheet"/>
+    <link href="/kthermostats/css/main.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-inverse navbar-static-top">
@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/Thermostat/site/index.jsp">DOMOENEA</a>
+          <a class="navbar-brand" href="/kthermostats/site/index.jsp">DOMOENEA</a>
         </div>
         <t:nav/>
       </div>
@@ -47,7 +47,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/Thermostat/js/jquery-2.2.0.min.js"></script>
-    <script src="/Thermostat/js/bootstrap.js"></script>
+    <script src="/kthermostats/js/jquery-2.2.0.min.js"></script>
+    <script src="/kthermostats/js/bootstrap.js"></script>
     </body>
 </html>

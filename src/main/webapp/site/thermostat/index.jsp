@@ -37,5 +37,5 @@ this page will override the default page when changed the default gidget
                 </div>
             </div>
          </div>
-<script src="/Thermostat/js/thermostat/facade.js"></script>
+<script src="/kthermostats/js/thermostat/facade.js"></script>
 </t:wrapper>

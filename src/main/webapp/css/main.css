@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'digital'; /*a name to be used later*/
-    src: url('/Thermostat/fonts/digital.ttf'); /*URL to font*/
+    src: url('/kthermostats/fonts/digital.ttf'); /*URL to font*/
 }
 
 .boton{

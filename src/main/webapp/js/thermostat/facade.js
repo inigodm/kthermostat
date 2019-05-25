@@ -24,7 +24,7 @@ mod.controller("newCtrl", [ '$scope', '$timeout', '$http', '$interval',
 				$scope.add(0);
 			}
 			$scope.add = function(value) {
-				$http.post("/Thermostat/site/rest/thermostat/changer", {
+				$http.post("/kthermostats/site/rest/thermostat/changer", {
 					"method" : "changetemp",
 					"data" : value
 				}).success($scope.manage_thermostatInfo);

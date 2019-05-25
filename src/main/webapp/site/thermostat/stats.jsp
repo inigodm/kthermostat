@@ -2,8 +2,8 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <t:wrapper>
-<link href="/Thermostat/css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <link href="/Thermostat/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="/kthermostats/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/kthermostats/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 <div class="panel-group" ng-app="newApp" ng-controller="newCtrl">
             <div class="panel panel-default">
                 <div class="panel-heading">Thermostate: stats</div>
@@ -35,11 +35,11 @@
                 </div>
                 
            </div>
-        <script src="/Thermostat/js/jquery-2.2.0.min.js"></script>
-        <script type="text/javascript" src="/Thermostat/js/bootstrap.min.js"></script>
+        <script src="/kthermostats/js/jquery-2.2.0.min.js"></script>
+        <script type="text/javascript" src="/kthermostats/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-		<script type="text/javascript" src="/Thermostat/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-		<script type="text/javascript" src="/Thermostat/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="/kthermostats/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+		<script type="text/javascript" src="/kthermostats/js/locales/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
             <script>
             $('.form_date').datetimepicker({
             	format:'yyyy-mm-dd-hh:ii',
@@ -59,7 +59,7 @@
               });
             mod.controller("newCtrl",['$scope', '$timeout',  '$http', '$interval', function($scope, $timeout, $http, $interval){
             	$scope.find = function(value){
-            	$http.get("/Thermostat/site/rest/stats/get/"+$("#horainicio").find("input").val()+"/"+$("#horafin").find("input").val())
+            	$http.get("/kthermostats/site/rest/stats/get/"+$("#horainicio").find("input").val()+"/"+$("#horafin").find("input").val())
             	.success($scope.doReturnOk);
             	};
             	$scope.doReturnOk = function(resp){

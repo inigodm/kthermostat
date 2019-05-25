@@ -7,10 +7,10 @@
             <div class="btn-group-wrap">
                  <ul class="pager subnav-pager  navbar-left"> 
 		        	<li>
-			          <a href="/Thermostat/site/thermostat/schedules">Schedules</a>
+			          <a href="/kthermostats/site/thermostat/schedules">Schedules</a>
 			        </li>
 			        <li>
-			          <a href="/Thermostat/site/stats">Stats</a>
+			          <a href="/kthermostats/site/stats">Stats</a>
 			        </li>
 	        	</ul>
              </div>         
