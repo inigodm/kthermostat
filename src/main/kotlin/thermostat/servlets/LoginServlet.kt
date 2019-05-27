@@ -13,8 +13,18 @@ class LoginServlet: HttpServlet() {
     companion object{
         val LOGIN_JSP = "/login.jsp"
     }
+
     override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
         forward(req!!, resp!!, LOGIN_JSP)
+    }
+
+    override fun doPost(req: HttpServletRequest?, resp: HttpServletResponse?) {
+        var next = req!!.run { tryLogin(getParameter("username"), req!!.getParameter("password"))}
+        forward(req!!, resp!!, next)
+    }
+
+    private fun tryLogin(user: String?, pass: String?): String {
+        return "/site/index.jsp"
     }
 }
 
