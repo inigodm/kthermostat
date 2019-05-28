@@ -9,9 +9,9 @@ import java.sql.SQLException
  */
 interface TableManager {
     @Throws(ThermostatException::class)
-    fun createTable()
+    fun createTable(conn:Connection)
     @Throws(ThermostatException::class)
-    fun dropTable()
+    fun dropTable(conn:Connection)
 }
 
 fun Connection.executeUpdate(sql: String){

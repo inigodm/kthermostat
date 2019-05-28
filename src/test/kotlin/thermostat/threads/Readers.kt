@@ -19,6 +19,5 @@ class Weather_ws_works_if{
         println("CPU: $resp")
         Assert.assertFalse(resp == null)
         Assert.assertTrue(resp.length < 10)
-
     }
 }
