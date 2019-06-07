@@ -15,6 +15,6 @@ fun hash(word: String="", salt: String=""): String {
     return DigestUtils.sha256Hex(word + salt)
 }
 
-fun isValidHash(hashed: String, pass: String, salt: String): Boolean {
+fun isValidHash(hashed: String, salt: String, pass: String): Boolean {
     return hashed == hash(pass, salt)
 }

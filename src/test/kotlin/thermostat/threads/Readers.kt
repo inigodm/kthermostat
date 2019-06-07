@@ -6,7 +6,7 @@ import thermostat.thermostat.threads.*
 
 class Weather_ws_works_if{
     @Test
-    fun reads_a_json(){
+    fun reads_a_json_from_each_origin(){
         var resp = OpenWeatherReader().read()
         println("OWM: $resp")
         Assert.assertFalse(resp == null)

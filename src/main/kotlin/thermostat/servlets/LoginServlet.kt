@@ -1,6 +1,5 @@
 package thermostat.servlets
 
-import thermostat.listeners.LoginFilter
 import javax.servlet.annotation.WebServlet
 import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
@@ -12,6 +11,7 @@ import javax.servlet.ServletException
 class LoginServlet: HttpServlet() {
     companion object{
         val LOGIN_JSP = "/login.jsp"
+        val INDEX_JSP = "/site/index.jsp"
     }
 
     override fun doGet(req: HttpServletRequest?, resp: HttpServletResponse?) {
@@ -24,7 +24,7 @@ class LoginServlet: HttpServlet() {
     }
 
     private fun tryLogin(user: String?, pass: String?): String {
-        return "/site/index.jsp"
+        return INDEX_JSP
     }
 }
 
@@ -55,5 +55,8 @@ class LogoutServlet: HttpServlet() {
 fun HttpServlet.forward(request: HttpServletRequest, response: HttpServletResponse, destiny: String){
     val dispatcher = servletContext.getRequestDispatcher(destiny)
     dispatcher.forward(request, response)
+}
 
+fun HttpServlet.redirectTo(request: HttpServletRequest, response: HttpServletResponse, destiny: String){
+    response.sendRedirect("/Thermostat$destiny")
 }

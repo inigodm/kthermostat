@@ -26,23 +26,21 @@ class RefreshSchema {
     fun getAllTableManagerClassesFrom(packa: String) =
         Reflections(packa).getSubTypesOf(TableManager::class.java)
 
-    @Throws(ThermostatException::class)
-    fun getConnection(): Connection {
-        try {
-            Class.forName("org.sqlite.JDBC")
-            return DriverManager.getConnection("jdbc:sqlite:" + ThermostatProperties.get("db"))
-        } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
-            throw ThermostatException(e.message, e)
-        } catch (e: SQLException) {
-            e.printStackTrace()
-            throw ThermostatException(e.message, e)
-        }
-
-    }
-
 }
 
 fun main(){
     RefreshSchema().buildDB()
+}
+
+@Throws(ThermostatException::class)
+fun getConnection(db: String = ThermostatProperties.get("db")): Connection {
+    try {
+        println("From db: $db")
+        Class.forName("org.sqlite.JDBC")
+        return DriverManager.getConnection("jdbc:sqlite:$db")
+    } catch (e: Exception) {
+        e.printStackTrace()
+        throw ThermostatException(e.message, e)
+    }
+
 }

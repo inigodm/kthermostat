@@ -11,7 +11,7 @@ class SHA_working{
         Assert.assertTrue(text != hash(text))
         Assert.assertTrue(text != hash(text, salt))
         Assert.assertTrue(hash(text) != hash(text, salt))
-        Assert.assertTrue(isValidHash(hash(text, salt), text, salt))
+        Assert.assertTrue(isValidHash(hash(text, salt), salt, text))
     }
 
     @Test

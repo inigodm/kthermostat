@@ -31,10 +31,10 @@ class UserDAO(val user: String = "NO_USER") : TableManager {
     @Throws(ThermostatException::class)
     private fun createUserTable(conn:Connection) {
         println("trying to generate table Users")
-        val sql = "CREATE TABLE USERS " +
-                "(USER           TEXT    NOT NULL, " +
-                " PASS           TEXT     NOT NULL," +
-                " SALT			TEXT  	   NOT NULL)"
+        val sql = """CREATE TABLE USERS
+                (USER           TEXT    NOT NULL,
+                PASS           TEXT     NOT NULL,
+                SALT			TEXT  	   NOT NULL)"""
         conn.executeUpdate(sql)
     }
 
@@ -42,23 +42,19 @@ class UserDAO(val user: String = "NO_USER") : TableManager {
     fun updatePassword(conn:Connection, user: String, pass: String) {
         val salt = generateSalt()
         var hash = hash(pass, salt)
-        val sql =
-            "update users set pass = '" + hash + "', salt= '" + salt + "' where user = '" + user + "'"
-        conn.executeUpdate(sql)
+        conn.executeUpdate("update users set pass = '$hash', salt= '$salt' where user = '$user'")
     }
 
     @Throws(ThermostatException::class)
-    private fun addData(conn:Connection) {
+    fun addData(conn:Connection, user: String= "inigo", password: String = "password") {
         val salt = generateSalt()
-        var hash = hash("password", salt)
-        val sql =
-            "insert into users (user, pass, salt) values ('inigo', '" + hash + "', '" + salt + "')"
-        conn.executeUpdate(sql)
+        var hash = hash(password, salt)
+        conn.executeUpdate("insert into users (user, pass, salt) values ('$user', '$hash', '$salt')")
     }
 
     @Throws(ThermostatException::class)
     fun login(conn:Connection, username: String, pass: String): String {
-        return findUser(conn, username, pass)
+        return find(conn, username, pass)
         /*if (isError) {
             return "login.jsp"
         } else {
@@ -69,12 +65,12 @@ class UserDAO(val user: String = "NO_USER") : TableManager {
 
     @Synchronized
     @Throws(ThermostatException::class)
-    private fun findUser(conn:Connection, user: String, pass: String): String {
+    fun find(conn:Connection, user: String, pass: String): String {
         try {
             createPreparedStatement(conn, user.toLowerCase(), pass).use {
                     stmt ->  stmt.executeQuery().use {
                         rs ->   var userdb: String = ""
-                                if (rs.next() && isValidUser(conn, rs.getString(2), rs.getString(3), pass)) {
+                                if (rs.next() && isValidHash(rs.getString(2), rs.getString(3), pass)) {
                                     userdb = rs.getString(1)
                                 }
                                 return userdb
@@ -85,19 +81,13 @@ class UserDAO(val user: String = "NO_USER") : TableManager {
         }
     }
 
-    private fun isValidUser(conn:Connection, hash: String, salt: String, pass: String): Boolean {
-        return isValidHash(hash, salt, pass)
-    }
-
     @Throws(SQLException::class)
     private fun createPreparedStatement(conn: Connection, user: String, pass: String): PreparedStatement {
-        val sql = "select user, pass, salt from users where user = ?"
-        val stmt = conn.prepareStatement(sql)
+        val stmt = conn.prepareStatement("select user, pass, salt from users where user = ?")
         stmt.setString(1, user)
         return stmt
     }
 
 }
-
 
 data class User(val name: String = "NO_USER", val pass: String = "NO_PASS", val salt: String = "")
