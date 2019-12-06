@@ -1,9 +1,26 @@
 plugins {
     id 'java'
     id 'org.jetbrains.kotlin.jvm' version '1.3.31'
+    id 'jacoco'
 }
 
 group 'com.inigo'
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/reports/jacoco")
+}
+
+
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/reports/jacocoHtml")
+    }
+}
+
 
 sourceCompatibility = 1.8
 
